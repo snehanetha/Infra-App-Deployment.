@@ -105,3 +105,21 @@ variable "chart_version" {
   type        = string
   default     = "1.13.4"
 }
+
+variable "public_subnet_ids" {
+  description = "List of public subnet IDs for ALB"
+  type        = list(string)
+  default     = []
+}
+
+variable "app_tier_subnet_ids" {
+  description = "List of app tier subnet IDs for EKS"
+  type        = list(string)
+  default     = []
+}
+
+variable "data_tier_subnet_ids" {
+  description = "List of data tier subnet IDs for RDS"
+  type        = list(string)
+  default     = []
+}
