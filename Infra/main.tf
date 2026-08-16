@@ -21,27 +21,6 @@ provider "aws" {
   region = var.region
 }
 
-###############################################
-# Read VPC/Subnet outputs from Network layer
-###############################################
-data "terraform_remote_state" "network" {
-  backend = "s3"
-  config = {
-    bucket = "terraform-state-b26-workshop1"
-    key    = "envs/dev/network.tfstate"
-    region = "us-east-2"
-  }
-}
-
-locals {
-  vpc_id               = data.terraform_remote_state.network.outputs.vpc_id
-  public_subnet_ids    = data.terraform_remote_state.network.outputs.public_subnet_ids
-  web_tier_subnet_ids  = data.terraform_remote_state.network.outputs.web_tier_subnet_ids
-  app_tier_subnet_ids  = data.terraform_remote_state.network.outputs.app_tier_subnet_ids
-  data_tier_subnet_ids = data.terraform_remote_state.network.outputs.data_tier_subnet_ids
-}
-
-
 module "tf_ecr" {
   source           = "../modules/tf-ecr"
   repository_names = var.ecr_repository_names
