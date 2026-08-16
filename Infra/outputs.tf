@@ -25,10 +25,6 @@ output "app_tier_subnet_ids" {
 // ECS Outputs
 
 
-output "ecs_service_sg_id" {
-  description = "Security group ID for ECS services"
-  value       = module.tf_ecs.ecs_service_sg_id
-}
 
 
 // ECR Outputs 
