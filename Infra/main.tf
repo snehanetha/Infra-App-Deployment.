@@ -1,7 +1,7 @@
 // Infra/main.tf
 terraform {
   backend "s3" {
-    bucket         = "terraform-state-b26-workshop"
+    bucket         = "terraform-state-b26-workshop1"
     key            = "envs/dev/terraform.tfstate"
     region         = "us-east-2"
     dynamodb_table = "terraform-locks"
