@@ -1,5 +1,3 @@
-
-
 // VPC Outputs
 
 output "region" {
@@ -7,25 +5,16 @@ output "region" {
 }
 
 output "vpc_id" {
-  value = data.terraform_remote_state.network.outputs.vpc_id
+  value = var.vpc_id
 }
 
 output "public_subnet_ids" {
-  value = data.terraform_remote_state.network.outputs.public_subnet_ids
-}
-
-output "private_subnet_ids" {
-  value = data.terraform_remote_state.network.outputs.web_tier_subnet_ids
+  value = var.public_subnet_ids
 }
 
 output "app_tier_subnet_ids" {
-  value = data.terraform_remote_state.network.outputs.app_tier_subnet_ids
+  value = var.app_tier_subnet_ids
 }
-
-// ECS Outputs
-
-
-
 
 // ECR Outputs 
 
@@ -34,12 +23,10 @@ output "ecr_repo_urls" {
   value       = module.tf_ecr.repo_urls
 }
 
-
 output "ecr_repo_arns" {
   description = "Map repo_name => repository ARN"
   value       = module.tf_ecr.repo_arns
 }
-
 
 // EKS Outputs 
 
@@ -51,6 +38,7 @@ output "eks_control_plane_sg_id" {
 output "eks_cluster_endpoint" {
   value = module.tf_eks.tf_eks_cluster_endpoint
 }
+
 output "eks_cluster_ca_data" {
   value = module.tf_eks.tf_eks_cluster_ca_data
 }
