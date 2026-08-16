@@ -61,6 +61,7 @@ module "tf_alb" {
   source            = "../modules/tf-alb"
   vpc_id            = local.vpc_id
   public_subnet_ids = local.public_subnet_ids
+  acm_certificate_arn = var.acm_certificate_arn # <-- ADDED: Passes required certificate ARN
   tags              = var.tags
 }
 
