@@ -52,6 +52,7 @@ module "tf_ecr" {
 module "backend_alb_sg" {
   source = "../modules/tf-backend-alb-sg"
   vpc_id = local.vpc_id
+  ecs_security_group_id = ""
   tags   = var.tags
 }
 
