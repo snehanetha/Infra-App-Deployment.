@@ -48,6 +48,21 @@ module "tf_ecr" {
   tags             = var.tags
 }
 
+# Added module to resolve backend_alb_sg_id reference in EKS
+module "backend_alb_sg" {
+  source = "../modules/tf-backend-alb-sg"
+  vpc_id = local.vpc_id
+  tags   = var.tags
+}
+
+# Added module to resolve module.tf_alb references in outputs.tf
+module "tf_alb" {
+  source            = "../modules/tf-alb"
+  vpc_id            = local.vpc_id
+  public_subnet_ids = local.public_subnet_ids
+  tags              = var.tags
+}
+
 module "tf_eks" {
   source            = "../modules/tf-eks"
   eks_cluster_name  = var.eks_cluster_name
